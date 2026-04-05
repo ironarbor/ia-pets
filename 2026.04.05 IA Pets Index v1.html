@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IA Pets — Longmeadow, MA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --olive-dark:  #343b24;
+      --olive:       #4e5c30;
+      --olive-mid:   #6b7a42;
+      --olive-light: #8fa060;
+      --olive-tint:  #f2f3ec;
+      --gold:        #b8892a;
+      --gold-light:  #e8c46a;
+      --neutral-100: #f8f6f2;
+      --neutral-200: #edebe5;
+      --neutral-300: #d8d5cc;
+      --neutral-500: #8c8880;
+      --neutral-700: #4c4840;
+      --text:        #1c1a16;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--neutral-100);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--olive-dark);
+      padding: 0 2.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .nav-logo { display: flex; align-items: center; gap: .75rem; text-decoration: none; }
+    .nav-logo img { height: 36px; width: auto; filter: brightness(0) invert(1); opacity: .92; }
+    .nav-logo-divider { width: 1px; height: 22px; background: rgba(255,255,255,.2); }
+    .nav-logo-sub {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 1.1rem; color: var(--gold-light);
+      font-style: italic; font-weight: 400; letter-spacing: .02em;
+    }
+    .nav-links { display: flex; align-items: center; gap: 1.8rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: rgba(255,255,255,.68);
+      font-weight: 500; font-size: .75rem; letter-spacing: .1em;
+      text-transform: uppercase; transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--gold-light); }
+    .nav-links .nav-cta a {
+      background: var(--gold); color: #fff;
+      padding: .42rem 1.1rem; border-radius: 5px;
+      transition: opacity .2s;
+    }
+    .nav-links .nav-cta a:hover { opacity: .85; color: #fff; }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-block; text-decoration: none;
+      padding: .72rem 1.7rem; border-radius: 5px;
+      font-family: 'Jost', sans-serif;
+      font-weight: 600; font-size: .82rem; letter-spacing: .09em;
+      text-transform: uppercase;
+      transition: transform .15s, box-shadow .15s, opacity .15s;
+      cursor: pointer; border: none;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,.15); }
+    .btn-gold { background: var(--gold); color: #fff; }
+    .btn-outline-white { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.38); }
+    .btn-outline-white:hover { background: rgba(255,255,255,.08); }
+    .btn-outline-dark { background: transparent; color: var(--olive-dark); border: 1.5px solid var(--neutral-300); }
+    .btn-outline-dark:hover { background: var(--neutral-200); }
+
+    /* ── HERO ── */
+    .hero-photo { width: 100%; max-height: 600px; overflow: hidden; position: relative; }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block; }
+    .hero-photo-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(105deg, rgba(52,59,36,.84) 0%, rgba(52,59,36,.48) 52%, transparent 100%);
+      display: flex; align-items: center; padding: 3.5rem 4.5rem;
+    }
+    .hero-text { max-width: 500px; }
+    .hero-eyebrow {
+      font-size: .7rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--gold-light); font-weight: 500; margin-bottom: .8rem;
+    }
+    .hero-text h1 {
+      font-family: 'Cormorant Garant', serif;
+      font-size: clamp(2.8rem, 5vw, 4rem);
+      line-height: 1.05; color: #fff; font-weight: 500; margin-bottom: 1rem;
+    }
+    .hero-text h1 em { font-style: italic; color: var(--gold-light); }
+    .hero-text p { color: rgba(255,255,255,.78); font-size: .97rem; margin-bottom: 2rem; max-width: 400px; line-height: 1.75; }
+    .hero-btns { display: flex; gap: .75rem; flex-wrap: wrap; }
+    .hero-stats {
+      display: flex; gap: 2rem; margin-top: 2.2rem; flex-wrap: wrap;
+    }
+    .hero-stat { text-align: left; }
+    .hero-stat-num {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 1.9rem; color: var(--gold-light); font-weight: 500; line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: .68rem; letter-spacing: .1em; text-transform: uppercase;
+      color: rgba(255,255,255,.55); font-weight: 500;
+    }
+
+    /* ── BANNER ── */
+    .booking-banner {
+      background: var(--gold); padding: .9rem 2.5rem;
+      text-align: center;
+      font-size: .78rem; font-weight: 600; letter-spacing: .07em;
+      text-transform: uppercase; color: #fff;
+    }
+    .booking-banner a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+
+    /* ── SECTIONS ── */
+    section { padding: 5rem 2.5rem; }
+    .section-inner { max-width: 1020px; margin: 0 auto; }
+    .section-label {
+      font-size: .68rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--olive-mid); font-weight: 600; margin-bottom: .5rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 2.4rem; color: var(--olive-dark);
+      margin-bottom: .4rem; line-height: 1.15; font-weight: 500;
+    }
+    .section-divider { width: 44px; height: 2px; background: var(--gold); margin: .8rem 0 2.5rem; }
+    .section-sub { color: var(--neutral-500); font-weight: 400; margin-bottom: 2.5rem; font-size: .95rem; }
+
+    /* ── SERVICES ── */
+    #services { background: var(--neutral-100); }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.2rem; }
+    .service-card {
+      background: #fff; border-radius: 8px; padding: 1.8rem;
+      border: 1px solid var(--neutral-200);
+      transition: transform .2s, box-shadow .2s, border-color .2s;
+      position: relative;
+    }
+    .service-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(52,59,36,.1); border-color: var(--olive-light); }
+    .service-badge {
+      position: absolute; top: 1rem; right: 1rem;
+      background: var(--olive-tint); color: var(--olive-mid);
+      font-size: .62rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; padding: .22rem .6rem; border-radius: 3px;
+    }
+    .service-icon { font-size: 1.6rem; margin-bottom: .8rem; display: block; }
+    .service-card h3 {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 1.35rem; font-weight: 600; color: var(--olive-dark); margin-bottom: .2rem;
+    }
+    .service-duration { font-size: .7rem; color: var(--neutral-500); font-weight: 600; text-transform: uppercase; letter-spacing: .1em; margin-bottom: .7rem; }
+    .service-card p { font-size: .88rem; color: var(--neutral-500); margin-bottom: 1.2rem; line-height: 1.65; }
+    .service-price { font-family: 'Cormorant Garant', serif; font-size: 1.9rem; color: var(--gold); font-weight: 500; }
+    .service-price span { font-size: .78rem; color: var(--neutral-500); font-family: 'Jost', sans-serif; font-weight: 500; }
+    .service-rover {
+      font-size: .75rem; color: var(--neutral-500);
+      margin-top: .35rem; font-weight: 400;
+    }
+    .service-rover s { color: var(--neutral-300); }
+    .rover-nudge {
+      background: var(--olive-dark); border-radius: 8px;
+      padding: 1.4rem 2rem;
+      display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap; margin-top: 2rem;
+    }
+    .rover-nudge p { color: rgba(255,255,255,.8); font-size: .92rem; flex: 1; line-height: 1.6; }
+    .rover-nudge strong { color: #fff; font-weight: 600; }
+    .btn-rover {
+      background: var(--gold); color: #fff; font-weight: 600;
+      padding: .6rem 1.4rem; border-radius: 5px; text-decoration: none;
+      font-size: .78rem; letter-spacing: .07em; text-transform: uppercase;
+      white-space: nowrap; transition: opacity .2s;
+    }
+    .btn-rover:hover { opacity: .88; }
+
+    /* ── BIO ── */
+    #about { background: var(--olive-tint); }
+    .bio-wrap { display: grid; grid-template-columns: 5fr 7fr; gap: 4rem; align-items: start; }
+    @media(max-width:700px) { .bio-wrap { grid-template-columns: 1fr; } }
+    .bio-img-wrap { position: relative; }
+    .bio-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 8px; display: block; box-shadow: 0 12px 40px rgba(52,59,36,.15); }
+    .bio-img-accent { position: absolute; bottom: -14px; right: -14px; width: 60%; height: 60%; border: 2px solid var(--gold); border-radius: 8px; pointer-events: none; z-index: -1; }
+    .bio-content h2 { font-family: 'Cormorant Garant', serif; font-size: 2.4rem; color: var(--olive-dark); line-height: 1.1; margin-bottom: .2rem; font-weight: 500; }
+    .bio-title { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--neutral-500); font-weight: 500; margin-bottom: 1.4rem; }
+    .bio-content p { color: var(--neutral-700); font-size: .96rem; line-height: 1.8; margin-bottom: .9rem; }
+    .bio-links { display: flex; gap: .9rem; margin-top: 1.5rem; flex-wrap: wrap; }
+
+    /* ── TRUST STATS ── */
+    #trust { background: var(--olive-dark); padding: 3rem 2.5rem; }
+    .trust-inner { max-width: 1020px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.5rem; }
+    .trust-item { text-align: center; }
+    .trust-num { font-family: 'Cormorant Garant', serif; font-size: 2.6rem; color: var(--gold-light); font-weight: 500; line-height: 1; margin-bottom: .3rem; }
+    .trust-label { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.5); font-weight: 500; }
+
+    /* ── HOME & ENVIRONMENT ── */
+    #home-env { background: #fff; }
+    .env-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+    .env-card { background: var(--neutral-100); border-radius: 8px; padding: 1.3rem 1.4rem 1.1rem; border: 1px solid var(--neutral-200); }
+    .env-icon { font-size: 1.4rem; margin-bottom: .4rem; display: block; }
+    .env-card h4 { font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--neutral-500); font-weight: 600; margin-bottom: .3rem; }
+    .env-card p { font-family: 'Cormorant Garant', serif; font-size: 1.1rem; color: var(--olive-dark); font-weight: 500; line-height: 1.3; }
+
+    /* ── TYPICAL DAY ── */
+    #typical-day { background: var(--olive-tint); }
+    .day-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    @media(max-width:640px) { .day-grid { grid-template-columns: 1fr; } }
+    .day-block { background: #fff; border-radius: 8px; padding: 2rem; border: 1px solid var(--neutral-200); }
+    .day-block h3 { font-family: 'Cormorant Garant', serif; font-size: 1.4rem; color: var(--olive-dark); font-weight: 600; margin-bottom: .8rem; }
+    .day-block p { font-size: .92rem; color: var(--neutral-700); line-height: 1.75; }
+
+    /* ── SKILLS ── */
+    #skills { background: #fff; }
+    .skills-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    @media(max-width:640px) { .skills-cols { grid-template-columns: 1fr; } }
+    .skills-col h3 { font-family: 'Cormorant Garant', serif; font-size: 1.3rem; color: var(--olive-dark); font-weight: 600; margin-bottom: 1rem; padding-bottom: .6rem; border-bottom: 1px solid var(--neutral-200); }
+    .skill-list { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+    .skill-list li { display: flex; align-items: flex-start; gap: .75rem; font-size: .9rem; color: var(--neutral-700); font-weight: 400; line-height: 1.45; }
+    .skill-dot { width: 18px; height: 18px; border-radius: 50%; background: var(--olive-mid); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: .14rem; font-size: .58rem; color: #fff; }
+
+    /* ── POLICIES ── */
+    #policies { background: var(--neutral-100); }
+    .policies-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.1rem; }
+    .policy-card { border-left: 3px solid var(--gold); padding: 1rem 1.4rem; background: #fff; border-radius: 0 8px 8px 0; }
+    .policy-card h4 { font-family: 'Cormorant Garant', serif; font-size: 1.1rem; font-weight: 600; color: var(--olive-dark); margin-bottom: .3rem; }
+    .policy-card p { font-size: .87rem; color: var(--neutral-500); line-height: 1.6; }
+
+    /* ── REVIEWS ── */
+    #reviews { background: var(--olive-dark); }
+    #reviews .section-label { color: var(--gold-light); }
+    #reviews .section-title { color: #fff; }
+    #reviews .section-divider { background: var(--gold-light); }
+    .reviews-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.2rem; }
+    .review-card { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.11); border-radius: 8px; padding: 1.7rem; }
+    .review-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: .8rem; }
+    .review-stars { color: var(--gold-light); font-size: .95rem; }
+    .review-service { font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.38); font-weight: 600; }
+    .review-text { font-family: 'Cormorant Garant', serif; font-size: 1.08rem; font-style: italic; color: rgba(255,255,255,.88); line-height: 1.7; margin-bottom: 1rem; }
+    .review-author { font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.45); font-weight: 600; }
+    .reviews-cta { text-align: center; margin-top: 2.5rem; }
+    .reviews-cta a { color: var(--gold-light); font-size: .82rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; border-bottom: 1px solid rgba(232,196,106,.4); padding-bottom: .2rem; transition: border-color .2s; }
+    .reviews-cta a:hover { border-color: var(--gold-light); }
+
+    /* ── GALLERY ── */
+    #gallery { background: var(--neutral-200); }
+    .gallery-collage { columns: 4 170px; gap: .7rem; }
+    .gallery-collage figure { break-inside: avoid; margin-bottom: .7rem; overflow: hidden; border-radius: 6px; cursor: pointer; }
+    .gallery-collage figure img { width: 100%; display: block; transition: transform .38s ease, filter .38s ease; filter: brightness(.95) saturate(.9); }
+    .gallery-collage figure:hover img { transform: scale(1.09); filter: brightness(1.04) saturate(1.1); }
+    .gallery-empty { text-align: center; color: var(--neutral-500); font-size: .9rem; padding: 2rem 0; font-style: italic; }
+
+    /* ── BOOKING ── */
+    #booking { background: var(--neutral-100); }
+    .booking-intro { max-width: 580px; margin-bottom: 2.5rem; }
+    .booking-intro p { color: var(--neutral-500); font-size: .95rem; }
+    .booking-intro a { color: var(--olive-mid); font-weight: 600; text-decoration: none; }
+    .booking-intro a:hover { text-decoration: underline; }
+    .acuity-wrap { background: #fff; border-radius: 8px; border: 1px solid var(--neutral-200); overflow: hidden; padding: 1rem; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--olive-dark); color: rgba(255,255,255,.55); text-align: center; padding: 3rem 1.5rem; font-size: .82rem; }
+    .footer-logo { display: flex; align-items: center; justify-content: center; gap: .6rem; margin-bottom: .8rem; }
+    .footer-logo img { height: 28px; filter: brightness(0) invert(1); opacity: .65; }
+    .footer-logo-sub { font-family: 'Cormorant Garant', serif; font-size: 1rem; color: var(--gold-light); font-style: italic; }
+    footer a { color: var(--gold-light); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    .footer-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin: .8rem 0 1.2rem; }
+    .copyright { font-size: .7rem; opacity: .3; margin-top: .4rem; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+    .hero-eyebrow { animation: fadeUp .4s ease both .1s; }
+    .hero-text h1  { animation: fadeUp .4s ease both .2s; }
+    .hero-text p   { animation: fadeUp .4s ease both .3s; }
+    .hero-btns     { animation: fadeUp .4s ease both .38s; }
+    .hero-stats    { animation: fadeUp .4s ease both .46s; }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:760px) {
+      nav { padding: 0 1.2rem; }
+      .nav-links { gap: 1rem; }
+      section { padding: 3.5rem 1.2rem; }
+      .hero-photo-overlay { padding: 2rem 1.5rem; }
+      .booking-banner { padding: .85rem 1.2rem; font-size: .72rem; }
+      .bio-img-accent { display: none; }
+      #trust { padding: 2.5rem 1.2rem; }
+    }
+    @media(max-width:520px) {
+      .nav-links .nav-cta, .nav-logo-divider, .nav-logo-sub { display: none; }
+      .gallery-collage { columns: 2 130px; }
+      .hero-stats { gap: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <img src="https://advisory.ironarborllc.com/IA_Advisory.png" alt="Iron Arbor" />
+    <div class="nav-logo-divider"></div>
+    <span class="nav-logo-sub">Pets</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#home-env">My Home</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li class="nav-cta"><a href="#booking">Book Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero-photo">
+  <img src="images/hero-sc.jpg" alt="Shekeyla with dogs — IA Pets" />
+  <div class="hero-photo-overlay">
+    <div class="hero-text">
+      <p class="hero-eyebrow">Longmeadow, MA &nbsp;·&nbsp; Neighborly Pet Care</p>
+      <h1>Your dog is in<br><em>good hands.</em></h1>
+      <p>Professional, attentive pet care in your neighborhood — real updates, a calm home environment, and genuine love for every dog in my care.</p>
+      <div class="hero-btns">
+        <a class="btn btn-gold" href="#booking">Book Now</a>
+        <a class="btn btn-outline-white" href="https://www.rover.com/members/shekeyla-s-active-cuddly-home-away-from-home/" target="_blank">View Rover Profile</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num">5.0</div>
+          <div class="hero-stat-label">Star Rating</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">10</div>
+          <div class="hero-stat-label">Reviews</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">10</div>
+          <div class="hero-stat-label">Years Experience</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">100%</div>
+          <div class="hero-stat-label">Response Rate</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BANNER -->
+<div class="booking-banner">
+  Book direct &amp; skip the Rover platform fee — same great care, better price. &nbsp;<a href="#booking">Reserve your spot →</a>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <p class="section-label">What I offer</p>
+    <h2 class="section-title">Services & Rates</h2>
+    <div class="section-divider"></div>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <span class="service-badge">Most Popular</span>
+        <span class="service-icon">🌙</span>
+        <h3>Dog Boarding</h3>
+        <div class="service-duration">24 Hours · In My Home</div>
+        <p>Overnight care in a calm, home setting with regular photo updates and attentive care throughout the stay.</p>
+        <div class="service-price">$75 <span>/ night</span></div>
+        <p class="service-rover">vs. <s>$80</s> on Rover (includes 11% platform fee)</p>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">🦮</span>
+        <h3>Dog Walking & Drop-in Visits</h3>
+        <div class="service-duration">30 Minutes · In Your Home</div>
+        <p>A structured walk or drop-in at your home — potty break, fresh water, feeding, and a check-in update sent your way.</p>
+        <div class="service-price">$18 <span>/ visit</span></div>
+        <p class="service-rover">Same as Rover — no added platform fee when you book direct</p>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">☀️</span>
+        <h3>Doggy Day Care</h3>
+        <div class="service-duration">Up to 8 Hours · In My Home</div>
+        <p>Full daytime supervision, play, and rest in my home — a great option for long work days or appointments.</p>
+        <div class="service-price">$50 <span>/ day</span></div>
+        <p class="service-rover">vs. <s>$50+fee</s> on Rover</p>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">🏠</span>
+        <h3>House Sitting</h3>
+        <div class="service-duration">Overnight · In Your Home</div>
+        <p>Overnight care at your home while you're away — routines maintained, home checked on, and pets cared for fully.</p>
+        <div class="service-price">$180 <span>/ night</span></div>
+        <p class="service-rover">vs. <s>$200</s> on Rover — <a href="mailto:SC@IronArborLLC.com" style="color:var(--olive-mid);font-weight:600;">email to book direct</a></p>
+      </div>
+
+    </div>
+    <div class="rover-nudge">
+      <p>Prefer to book through Rover? <strong>Same great care, reviewed by real pet parents.</strong> Direct booking simply removes the platform fee from your total.</p>
+      <a class="btn-rover" href="https://www.rover.com/members/shekeyla-s-active-cuddly-home-away-from-home/" target="_blank">Rover Profile →</a>
+    </div>
+  </div>
+</section>
+
+<!-- BIO -->
+<section id="about">
+  <div class="section-inner">
+    <div class="bio-wrap">
+      <div class="bio-img-wrap">
+        <img class="bio-img" src="images/hero-sc.jpg" alt="Shekeyla — IA Pets" />
+        <div class="bio-img-accent"></div>
+      </div>
+      <div class="bio-content">
+        <p class="section-label">About</p>
+        <h2>Hi, I'm Shekeyla.</h2>
+        <p class="bio-title">Longmeadow Pet Care Provider &nbsp;·&nbsp; Longmeadow, MA</p>
+        <div class="section-divider"></div>
+        <p>Pets have always been a big part of my life. Dogs are deeply important to me — I see them for the intelligent, emotional beings they are. They deserve all the love, attention, and nourishment we can give, and that is what I strive to provide in every visit and every stay.</p>
+        <p>Every pet in my care is treated with love like my very own fur baby. I enjoy learning about every animal's personality and quirks. I have house-trained multiple puppies, and cared for PearlJam, my senior rescue with complex medical needs — deaf, vision loss, and lung disease — for over four years. I currently have a 5-year-old Goldendoodle, Pretzel, who loves making new friends.</p>
+        <p>You can be assured that your pet will be treated positively and cared for preciously.</p>
+        <div class="bio-links">
+          <a class="btn btn-gold" href="#booking">Book a Service</a>
+          <a class="btn btn-outline-dark" href="mailto:SC@IronArborLLC.com">Get in Touch</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STATS -->
+<section id="trust" style="padding:3rem 2.5rem;">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <div class="trust-num">★ 5.0</div>
+      <div class="trust-label">Rover Rating</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num">100%</div>
+      <div class="trust-label">Response Rate</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num">100%</div>
+      <div class="trust-label">Photo Updates</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num">~mins</div>
+      <div class="trust-label">Avg. Response Time</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num">10 yrs</div>
+      <div class="trust-label">Pet Care Experience</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOME & ENVIRONMENT -->
+<section id="home-env">
+  <div class="section-inner">
+    <p class="section-label">My Home</p>
+    <h2 class="section-title">Where Your Dog Will Stay</h2>
+    <div class="section-divider"></div>
+    <div class="env-grid">
+      <div class="env-card"><span class="env-icon">🏡</span><h4>Home Type</h4><p>Single-family house</p></div>
+      <div class="env-card"><span class="env-icon">🌿</span><h4>Outdoor Space</h4><p>Unfenced yard</p></div>
+      <div class="env-card"><span class="env-icon">🚭</span><h4>Household</h4><p>Non-smoking</p></div>
+      <div class="env-card"><span class="env-icon">🐾</span><h4>Resident Pet</h4><p>Pretzel — Goldendoodle, 5 yrs, 50 lbs</p></div>
+      <div class="env-card"><span class="env-icon">⚖️</span><h4>Dogs I Can Host</h4><p>Up to 40 lbs · Up to 2 pets per stay</p></div>
+      <div class="env-card"><span class="env-icon">💻</span><h4>My Schedule</h4><p>Work from home — available all day</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TYPICAL DAY -->
+<section id="typical-day">
+  <div class="section-inner">
+    <p class="section-label">What to Expect</p>
+    <h2 class="section-title">A Typical Day</h2>
+    <div class="section-divider"></div>
+    <div class="day-grid">
+      <div class="day-block">
+        <h3>Active & Energetic Dogs</h3>
+        <p>Energetic dogs will get the physical activity they need with outside walks and jogs and plenty of play. I enjoy daily walks and jogs with pets that benefit from the activity — and I genuinely enjoy those walks too.</p>
+      </div>
+      <div class="day-block">
+        <h3>Calm & Cuddly Dogs</h3>
+        <p>For the lovey-dovey pets, they are most welcome to accompany me right on my lap or in a cozy bed next to my desk as I work. Pups with calmer spirits will get all the cuddle time they can manage.</p>
+      </div>
+      <div class="day-block">
+        <h3>What I Need to Know</h3>
+        <p>If your dog has any special needs or instructions, please feel comfortable sharing that with me in great detail. I want your pet to feel comfortable — and that starts with knowing what their experience is like at home.</p>
+      </div>
+      <div class="day-block">
+        <h3>Updates & Communication</h3>
+        <p>Every booking includes photo updates so you always know your dog is happy and well. I respond in minutes and keep you in the loop throughout every visit or stay — no radio silence, ever.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <p class="section-label">Experience & Skills</p>
+    <h2 class="section-title">What I Bring to Every Visit</h2>
+    <div class="section-divider"></div>
+    <div class="skills-cols">
+      <div class="skills-col">
+        <h3>Dog Skills</h3>
+        <ul class="skill-list">
+          <li><div class="skill-dot">✓</div>10 years of pet care experience</li>
+          <li><div class="skill-dot">✓</div>Oral medication administration</li>
+          <li><div class="skill-dot">✓</div>Injected medication administration</li>
+          <li><div class="skill-dot">✓</div>First aid / CPR certified</li>
+          <li><div class="skill-dot">✓</div>Senior dog experience</li>
+          <li><div class="skill-dot">✓</div>Special needs dog experience</li>
+          <li><div class="skill-dot">✓</div>Can provide daily exercise</li>
+          <li><div class="skill-dot">✓</div>House-trained multiple puppies</li>
+        </ul>
+      </div>
+      <div class="skills-col">
+        <h3>Cat Skills</h3>
+        <ul class="skill-list">
+          <li><div class="skill-dot">✓</div>Oral medication administration</li>
+          <li><div class="skill-dot">✓</div>Injectable medication administration</li>
+          <li><div class="skill-dot">✓</div>Experienced with cats of all temperaments</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POLICIES -->
+<section id="policies">
+  <div class="section-inner">
+    <p class="section-label">House Rules</p>
+    <h2 class="section-title">Policies</h2>
+    <div class="section-divider"></div>
+    <div class="policies-grid">
+      <div class="policy-card">
+        <h4>Vaccinations</h4>
+        <p>All pets must be current on core vaccinations. Proof may be requested before the first visit.</p>
+      </div>
+      <div class="policy-card">
+        <h4>Cancellations</h4>
+        <p>Boarding cancellations follow a three-day policy. Other services: full refund with 48+ hours notice; non-refundable within 48 hours.</p>
+      </div>
+      <div class="policy-card">
+        <h4>Dog Size & Capacity</h4>
+        <p>I can host dogs 0–40 lbs. Up to 2 pets per stay. Larger dogs welcome for walking and drop-in visits.</p>
+      </div>
+      <div class="policy-card">
+        <h4>Potty Breaks</h4>
+        <p>Regular outdoor breaks throughout the day. I work from home and am generally available all day to attend to your pet's needs.</p>
+      </div>
+      <div class="policy-card">
+        <h4>Special Needs</h4>
+        <p>Medication administration (oral and injectable), senior dog care, and special needs experience are all within my capabilities.</p>
+      </div>
+      <div class="policy-card">
+        <h4>Emergencies</h4>
+        <p>In the event of a veterinary emergency, I will contact you immediately and seek care on your pet's behalf if you are unreachable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="section-inner">
+    <p class="section-label">What Clients Say</p>
+    <h2 class="section-title">Reviews</h2>
+    <div class="section-divider"></div>
+    <div class="reviews-grid">
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-service">Boarding · Feb 2026</div>
+        </div>
+        <p class="review-text">"Shekeyla was truly a blessing for us and for Firulais. As a dog mom, I was nervous but she immediately made me feel at peace. He came home happy, relaxed, and clearly loved. If you're looking for someone who will care for your dog the way you would, Shekeyla is it."</p>
+        <p class="review-author">— Ange N.</p>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-service">Boarding · Feb 2026</div>
+        </div>
+        <p class="review-text">"Shekeyla was an amazing caretaker for our two dogs! She was very accommodating to our last minute changes and very understanding of our dogs' needs and personalities. We absolutely would recommend Shekeyla to anyone!"</p>
+        <p class="review-author">— Christopher K.</p>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-service">Jan 2026</div>
+        </div>
+        <p class="review-text">"Shekeyla is a FANTASTIC pet sitter. Having looked after puppies, adults, and seniors with special needs, she treats all pets like they're her own. She is responsible, detail-oriented, and highly responsive. 10/10 would recommend."</p>
+        <p class="review-author">— Bill S.</p>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-service">Jan 2026</div>
+        </div>
+        <p class="review-text">"Finding someone to care for my nervous pet is hard, but Shekeyla was wonderful. She was patient, took the time to understand my pet's routine, and made them feel safe and comfortable. Shekeyla is knowledgeable, compassionate, and incredibly responsible."</p>
+        <p class="review-author">— Stephanie C.</p>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-service">Jan 2026</div>
+        </div>
+        <p class="review-text">"My pets are my family. Finding someone I trust enough to take care of them is stressful. Shekeyla made the decision easy. She is a mother and dog owner herself — that made it easier. I 100% recommend her."</p>
+        <p class="review-author">— Samuel C.</p>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-service">Drop-In Visits · Feb 2026</div>
+        </div>
+        <p class="review-text">"Pups were in great shape upon our return. We appreciate Shekeyla's timeliness for her visits and getting the pups outdoors during our travels."</p>
+        <p class="review-author">— Jon S.</p>
+      </div>
+
+    </div>
+    <div class="reviews-cta">
+      <a href="https://www.rover.com/members/shekeyla-s-active-cuddly-home-away-from-home/" target="_blank">See all 10 reviews on Rover →</a>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="section-inner">
+    <p class="section-label">The Good Ones</p>
+    <h2 class="section-title">Gallery</h2>
+    <div class="section-divider"></div>
+    <p class="section-sub">Some of the pups I've had the pleasure of caring for. Hover to take a closer look.</p>
+    <div class="gallery-collage" id="galleryGrid"></div>
+    <p class="gallery-empty" id="galleryEmpty" style="display:none">Photos coming soon — check back shortly.</p>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="booking">
+  <div class="section-inner">
+    <p class="section-label">Reserve Your Spot</p>
+    <h2 class="section-title">Book a Service</h2>
+    <div class="section-divider"></div>
+    <div class="booking-intro">
+      <p>Select your service, choose a date, and pay securely at booking. I'll follow up before your first visit to go over your dog's details. Questions first? Email <a href="mailto:SC@IronArborLLC.com">SC@IronArborLLC.com</a>. For House Sitting, please email to book direct.</p>
+    </div>
+    <div class="acuity-wrap">
+      <iframe src="https://app.acuityscheduling.com/schedule.php?owner=38973234&ref=embedded_csp" title="Schedule Appointment" width="100%" height="800" frameBorder="0" allow="payment"></iframe>
+      <script src="https://embed.acuityscheduling.com/js/embed.js" type="text/javascript"></script>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <img src="https://advisory.ironarborllc.com/IA_Advisory.png" alt="Iron Arbor" />
+    <span class="footer-logo-sub">Pets</span>
+  </div>
+  <p>Neighborly pet care in Longmeadow, MA</p>
+  <div class="footer-links">
+    <a href="mailto:SC@IronArborLLC.com">SC@IronArborLLC.com</a>
+    <a href="https://IAPets.as.me/" target="_blank">Book Direct</a>
+    <a href="https://www.rover.com/members/shekeyla-s-active-cuddly-home-away-from-home/" target="_blank">Rover Profile</a>
+  </div>
+  <p class="copyright">© Iron Arbor Holdings, LLC</p>
+</footer>
+
+<script>
+  const grid = document.getElementById('galleryGrid');
+  const empty = document.getElementById('galleryEmpty');
+  let loaded = 0, failed = 0;
+  for (let i = 1; i <= 20; i++) {
+    const fig = document.createElement('figure');
+    const img = document.createElement('img');
+    img.src = `images/gallery/pet${String(i).padStart(2,'0')}.jpg`;
+    img.alt = `Pet photo ${i}`;
+    img.loading = 'lazy';
+    img.onload = () => { loaded++; };
+    img.onerror = () => { fig.remove(); failed++; if (loaded === 0 && failed === 20) empty.style.display = 'block'; };
+    fig.appendChild(img);
+    grid.appendChild(fig);
+  }
+</script>
+</body>
+</html>
