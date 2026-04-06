@@ -297,6 +297,36 @@
       .nav-links .nav-cta, .nav-logo-divider, .nav-logo-sub { display: none; }
       .gallery-collage { columns: 2 130px; }
     }
+
+/* BOOKING WIZARD */ 
+    <!--NEWWWW-->
+  
+    .booking-wizard { background: #fff; padding: 2.5rem; border-radius: 8px; border: 1px solid var(--neutral-200); box-shadow: 0 4px 15px rgba(52,59,36,0.05); }
+    .wizard-step { display: none; }
+    .wizard-step.active { display: block; animation: fadeIn 0.4s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    
+    .wizard-header { margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--neutral-200); }
+    .step-indicator { font-size: 0.8rem; font-weight: 600; color: var(--neutral-500); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+    
+    .wizard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem; }
+    .wizard-field { display: flex; flex-direction: column; gap: 0.4rem; }
+    .wizard-field label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; color: var(--neutral-500); letter-spacing: 0.05em; }
+    .wizard-field input, .wizard-field select, .wizard-field textarea { padding: 0.7rem; border: 1px solid var(--neutral-300); border-radius: 5px; font-family: 'Jost', sans-serif; font-size: 0.95rem; }
+    .wizard-field textarea { resize: vertical; min-height: 100px; }
+    
+    .wizard-summary { background: var(--olive-tint); padding: 1.5rem; border-radius: 6px; display: flex; flex-direction: column; gap: 1rem; border: 1px solid rgba(78,92,48,0.1); margin-bottom: 1.5rem; }
+    .summary-row { display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--neutral-700); }
+    .summary-total { display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 1rem; margin-top: 0.5rem; }
+    .summary-total-label { font-size: 1.1rem; font-weight: 600; color: var(--olive-dark); }
+    .summary-total-price { font-family: 'Cormorant Garant', serif; font-size: 2.2rem; color: var(--gold); font-weight: 600; line-height: 1; }
+    
+    .holiday-badge { display: inline-block; background: var(--gold); color: #fff; font-size: 0.65rem; font-weight: 700; padding: 0.2rem 0.5rem; border-radius: 3px; text-transform: uppercase; margin-left: 0.5rem; vertical-align: middle; }
+    .disclaimer-box { background: rgba(184, 137, 42, 0.1); border-left: 3px solid var(--gold); padding: 1rem; font-size: 0.85rem; color: var(--neutral-700); margin-bottom: 1.5rem; border-radius: 0 4px 4px 0; }
+    
+    .terms-scrollbox { height: 150px; overflow-y: scroll; border: 1px solid var(--neutral-300); padding: 1rem; background: var(--neutral-100); font-size: 0.85rem; color: var(--neutral-700); border-radius: 5px; margin-bottom: 1rem; }
+    
+    
   </style>
 </head>
 <body>
@@ -708,6 +738,174 @@ document.addEventListener('DOMContentLoaded', function() {
       grid.appendChild(fig);
     })(i);
   }
+
+
+  <section id="booking">
+    <div class="section-inner">
+      <h2 class="section-title" style="text-align: center;">Request a Stay</h2>
+      
+      <div class="booking-wizard">
+        
+        <div id="step-1" class="wizard-step active">
+          <div class="wizard-header">
+            <div class="step-indicator">Step 1 of 3</div>
+            <h3 style="color: var(--olive-dark); font-size: 1.4rem;">Owner & Pet Details</h3>
+          </div>
+          <div class="wizard-grid">
+            <div class="wizard-field"><label>Your Full Name *</label><input type="text" id="w-name" required></div>
+            <div class="wizard-field"><label>Email Address *</label><input type="email" id="w-email" required></div>
+            <div class="wizard-field"><label>Phone Number *</label><input type="tel" id="w-phone" required></div>
+          </div>
+          <div class="wizard-grid">
+            <div class="wizard-field"><label>Pet's Name *</label><input type="text" id="w-petname" required></div>
+            <div class="wizard-field"><label>Pet's Breed *</label><input type="text" id="w-petbreed" required></div>
+            <div class="wizard-field"><label>Pet's Age *</label><input type="text" id="w-petage" placeholder="e.g., 3 years" required></div>
+          </div>
+          <div class="wizard-grid">
+            <div class="wizard-field"><label>Pet's Weight (lbs) *</label><input type="number" id="w-petweight" required></div>
+            <div class="wizard-field">
+              <label>Pet's Sex *</label>
+              <select id="w-petsex">
+                <option value="Neutered Male">Neutered Male</option>
+                <option value="Un-neutered Male">Un-neutered Male</option>
+                <option value="Spayed Female">Spayed Female</option>
+                <option value="Un-spayed Female">Un-spayed Female</option>
+              </select>
+            </div>
+          </div>
+          <div style="text-align: right; margin-top: 1rem;">
+            <button class="btn btn-gold" onclick="nextStep(2)">Next: Choose Dates →</button>
+          </div>
+        </div>
+
+        <div id="step-2" class="wizard-step">
+          <div class="wizard-header">
+            <div class="step-indicator">Step 2 of 3</div>
+            <h3 style="color: var(--olive-dark); font-size: 1.4rem;">Stay Details & Estimate</h3>
+          </div>
+          
+          <div class="wizard-grid">
+            <div class="wizard-field">
+              <label>Service Type</label>
+              <select id="w-service">
+                <option value="boarding">Boarding (In Sitter's Home)</option>
+                <option value="housesitting">House Sitting (In Your Home)</option>
+                <option value="daycare">Doggy Day Care</option>
+                <option value="walking">Dog Walking</option>
+                <option value="dropin">Drop-In Visit</option>
+              </select>
+            </div>
+            <div class="wizard-field">
+              <label>Number of Dogs</label>
+              <select id="w-dogs"><option value="1">1 Dog</option><option value="2">2 Dogs</option><option value="3">3 Dogs</option></select>
+            </div>
+            <div class="wizard-field">
+              <label>Is one a Puppy (<1 yr)?</label>
+              <select id="w-puppy"><option value="0">No</option><option value="1">Yes</option></select>
+            </div>
+          </div>
+
+          <div class="wizard-grid">
+            <div class="wizard-field"><label>Drop-Off Date</label><input type="date" id="w-start-date" required></div>
+            <div class="wizard-field"><label>Drop-Off Time</label><input type="time" id="w-start-time" value="09:00" required></div>
+            <div class="wizard-field"><label>Pick-Up Date</label><input type="date" id="w-end-date" required></div>
+            <div class="wizard-field"><label>Pick-Up Time</label><input type="time" id="w-end-time" value="17:00" required></div>
+          </div>
+
+          <div class="wizard-summary">
+            <div class="summary-row">
+              <span id="out-desc">1 Dog x 0 Nights</span>
+              <span id="out-base">$0.00</span>
+            </div>
+            <div class="summary-row" id="row-holiday" style="display:none; color: var(--gold);">
+              <span>Holiday Surge Pricing <span class="holiday-badge">Active</span></span>
+            </div>
+            <div class="summary-row" id="row-extended" style="display:none; color: var(--olive);">
+              <span>Extended Care (Late Pickup)</span><span id="out-extended">$0.00</span>
+            </div>
+            <div class="summary-row"><span>Tax (6.25%)</span><span id="out-tax">$0.00</span></div>
+            <div class="summary-total">
+              <span class="summary-total-label">Estimated Total</span>
+              <span class="summary-total-price" id="out-total">$0.00</span>
+            </div>
+          </div>
+          
+          <div style="display: flex; justify-content: space-between; margin-top: 1rem;">
+            <button class="btn btn-outline-dark" onclick="nextStep(1)">← Back</button>
+            <button class="btn btn-gold" onclick="nextStep(3)">Next: Intake Forms →</button>
+          </div>
+        </div>
+
+        <div id="step-3" class="wizard-step">
+          <div class="wizard-header">
+            <div class="step-indicator">Step 3 of 3</div>
+            <h3 style="color: var(--olive-dark); font-size: 1.4rem;">Complete Intake Profile</h3>
+          </div>
+          
+          <div class="wizard-field" style="margin-bottom: 1.5rem;">
+            <label>Pet Care & Health *</label>
+            <textarea id="w-health" placeholder="Please describe any schedules, medications, medical conditions." required></textarea>
+          </div>
+
+          <div class="wizard-field" style="margin-bottom: 1.5rem;">
+            <label>Behavior *</label>
+            <textarea id="w-behavior" placeholder="How does your dog do with other dogs and children? Are there any behaviors I should be aware of? (leash pulling, separation anxiety, resource guarding, etc.)" required></textarea>
+          </div>
+
+          <div class="wizard-field" style="margin-bottom: 1.5rem;">
+            <label>Routine *</label>
+            <textarea id="w-routine" placeholder="What is your pet's normal feeding schedule & amounts? Any other routines that are important to maintain?" required></textarea>
+          </div>
+
+          <div class="wizard-grid">
+            <div class="wizard-field"><label>Emergency Contact Name & Phone *</label><input type="text" id="w-emergency" required></div>
+            <div class="wizard-field"><label>Vet Name & Phone Number *</label><input type="text" id="w-vet" required></div>
+          </div>
+
+          <div class="wizard-field" style="margin-bottom: 1.5rem; margin-top: 1.5rem;">
+            <label>Is there anything else I should know?</label>
+            <textarea id="w-notes" placeholder="Any additional notes..."></textarea>
+          </div>
+
+          <hr style="border: 0; border-top: 1px solid var(--neutral-200); margin: 2rem 0;">
+
+          <label style="font-size: 0.72rem; font-weight: 600; text-transform: uppercase; color: var(--neutral-500); letter-spacing: 0.05em;">Terms & Conditions</label>
+          <div class="terms-scrollbox">
+            <strong>Payment:</strong> Full payment is collected at the time of booking. Rates shown are starting rates for one pet. Additional pets and add-ons are subject to fees confirmed before finalization.<br><br>
+            <strong>Cancellations & Refunds:</strong> Cancellations made more than 72 hours before the start of service receive a full refund. Cancellations within 72 hours are non-refundable.<br><br>
+            <strong>Health & Vaccinations:</strong> All pets must be up to date on core vaccinations. By booking, you confirm your pet is healthy and flea-free.<br><br>
+            <strong>Emergencies:</strong> In a life-threatening emergency where you cannot be reached, I will seek veterinary care on your pet's behalf. You assume responsibility for costs.<br><br>
+            <strong>Liability:</strong> IA Pets is not responsible for injury or illness resulting from undisclosed health conditions or pre-existing behaviors.
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem;">
+            <input type="checkbox" id="w-terms-agree" required>
+            <label for="w-terms-agree" style="font-size: 0.9rem; color: var(--neutral-700);">I have read and agree to the IA Pets Terms & Conditions.</label>
+          </div>
+
+          <div class="disclaimer-box">
+            <strong>⚠️ IMPORTANT:</strong> This is a request, not a confirmed booking. I will review your submission and contact you to confirm or deny availability.
+          </div>
+
+          <div style="display: flex; justify-content: space-between; margin-top: 1rem;">
+            <button class="btn btn-outline-dark" onclick="nextStep(2)">← Back</button>
+            <button class="btn btn-gold" onclick="submitRequest()">Submit Service Request</button>
+          </div>
+        </div>
+        
+      </div>
+      
+      <div id="confirmation-container" style="display: none; background: #fff; padding: 3rem 2rem; border-radius: 8px; text-align:center; border: 1px solid var(--neutral-200); margin-top: 2rem;">
+        <div style="font-size: 3rem; color: var(--olive); margin-bottom: 1rem;">✓</div>
+        <h3 style="color: var(--olive-dark); margin-bottom: 1rem;">Request Submitted Successfully!</h3>
+        <p style="color: var(--neutral-700); max-width: 500px; margin: 0 auto 1.5rem auto;">Thank you for filling out the details. I have received your stay profile and quote request. I will personally review this and get back to you shortly to confirm, modify, or deny the booking based on calendar availability.</p>
+        <button class="btn btn-outline-dark" onclick="location.reload()">Return to Homepage</button>
+      </div>
+
+    </div>
+  </section>
+
+  
 </script>
 </body>
 </html>
