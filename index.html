@@ -13,7 +13,6 @@
     :root {
       --olive-dark:  #343b24;
       --olive:       #4e5c30;
-      --olive:   #6b7a42;
       --olive-light: #8fa060;
       --olive-tint:  #f2f3ec;
       --gold:        #b8892a;
@@ -42,7 +41,7 @@
       background: var(--olive);
       padding: 0 2.5rem;
       display: flex; align-items: center; justify-content: space-between;
-      height: 64px;
+      height: 54px;
       border-bottom: 1px solid rgba(255,255,255,.07);
     }
     .nav-logo { display: flex; align-items: center; gap: .75rem; text-decoration: none; }
@@ -334,17 +333,14 @@
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">
-    <img src="https://pets.ironarborllc.com/iapetslogov2.png" alt="Iron Arbor" />
-    <div class="nav-logo-divider"></div>
-    <span class="nav-logo-sub">Iron Arbor | Pets</span>
+    <span class="nav-logo-sub"> Iron Arbor | Pets</span>
   </a>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
     <li><a href="#about">About</a></li>
-    <li><a href="#home-env">My Home</a></li>
     <li><a href="#reviews">Reviews</a></li>
     <li><a href="#gallery">Gallery</a></li>
-    <li class="nav-cta"><a href="#booking">Book Now</a></li>
+    <li class="nav-cta"><a href="#booking">Request Booking</a></li>
   </ul>
 </nav>
 
@@ -353,7 +349,7 @@
   <img src="images/hero-sc-p-right.jpeg" alt="Shekeyla and dogs  — IA Pets" />
   <div class="hero-photo-overlay">
     <div class="hero-text">
-      <p class="hero-eyebrow">Neighborly Pet Care in Longmeadow, MA</p>
+      <p class="hero-eyebrow">Boutique Pet Care in Longmeadow, MA</p>
       <p>Professional, attentive pet care in the Longmeadow area — real updates, a calm home environment, and genuine love for every dog in my care.</p>
      <br></br>
       <div class="hero-btns">
@@ -381,13 +377,17 @@
     <p class="section-label">What I offer</p>
     <h2 class="section-title">Services & Rates</h2>
     <div class="section-divider"></div>
+    <div class="services-note">
+  <p>
+    "Rates below reflect direct IA Pets pricing. Direct booking reflects lower rates compared to booking on Rover. Final totals may vary for holidays, extended care, transportation, or additional pet complexity."
+  </p>
     <div class="services-grid">
 
       <div class="service-card">
-        <span class="service-badge">Most Popular</span>
+        <span class="service-badge"><!-- HOLD FOR BETTER Badge --> </span>
         <span class="service-icon"> <!-- HOLD FOR BETTER ICON --> </span>
         <h3>Dog Boarding</h3>
-        <div class="service-duration">24 Hours · In My Home</div>
+        <div class="service-duration">up to 24 Hours · In My Home</div>
         <p>Overnight care in a calm, home setting with regular photo updates and attentive care throughout the stay.</p>
         <div class="service-price">$75 <span>/ night</span></div>
         <p class="service-rover">vs. <s>$80</s> on Rover (includes 11% platform fee)</p>
