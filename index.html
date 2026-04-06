@@ -409,32 +409,8 @@
         <div class="service-price">$50 <span>/ day</span></div>
         <p class="service-rover">vs. <s>$50 + Rover fee</s> when you book direct</p>
       </div>
-<div class="booking-wizard" style="background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid var(--neutral-200); margin-bottom: 1.5rem;">
-  <h3 style="font-family: 'Cormorant Garant', serif; font-size: 1.6rem; color: var(--olive-dark); margin-bottom: 1rem;">Estimate Your Long-Term Stay</h3>
-  
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
-    <div>
-      <label style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--neutral-500);">Number of Nights</label>
-      <input type="number" id="wiz-nights" value="5" min="1" style="width: 100%; padding: 0.5rem; border: 1px solid var(--neutral-300); border-radius: 4px;">
-    </div>
 
-   // <div>
-      <label style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--neutral-500);">Number of Dogs</label>
-      <select id="wiz-dogs" style="width: 100%; padding: 0.5rem; border: 1px solid var(--neutral-300); border-radius: 4px;">
-        <option value="1">1 Dog</option>
-        <option value="2">2 Dogs</option>
-        <option value="3">3 Dogs</option>
-      </select>
-    </div>
-
-    
-    <div>
-      <label style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--neutral-500);">Medication Needed?</label>
-      <select id="wiz-meds" style="width: 100%; padding: 0.5rem; border: 1px solid var(--neutral-300); border-radius: 4px;">
-        <option value="0">No</option>
-        <option value="10">Yes (+$10/night)</option>
-      </select>
-    </div>
+      
   </div>
   //  -->
   
@@ -444,44 +420,13 @@
   </div>
 </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const nightsInput = document.getElementById('wiz-nights');
-  const dogsInput = document.getElementById('wiz-dogs');
-  const medsInput = document.getElementById('wiz-meds');
-  const totalDisplay = document.getElementById('wiz-total');
-
-  // Rover Standard Pricing Rules
-  const BASE_RATE = 75; // Dog 1
-  const ADDON_RATE = 40; // Dog 2+ (Discounted)
-
-  function calculateTotal() {
-    const nights = parseInt(nightsInput.value) || 0;
-    const dogs = parseInt(dogsInput.value);
-    const medCost = parseInt(medsInput.value);
-
-    let dailyRate = BASE_RATE;
-    if (dogs > 1) {
-      dailyRate += (dogs - 1) * ADDON_RATE;
-    }
-    
-    let total = (dailyRate * nights) + (medCost * nights);
-    totalDisplay.textContent = '$' + total;
-  }
-
-  nightsInput.addEventListener('input', calculateTotal);
-  dogsInput.addEventListener('change', calculateTotal);
-  medsInput.addEventListener('change', calculateTotal);
-});
-</script>
-
-      <!--END GEMINI CODE ADD-->
     </div>
     <div class="rover-nudge">
-      <p>Check out my profile on Rover! <br><strong>Direct booking with me through IA PETS removes middle-man platform fees.</strong> — same me, same care, better price for you.</p>
-      
+      <p>Check out my profile on Rover!<br> <a class="btn btn-outline-white" href="https://www.rover.com/members/shekeyla-s-active-cuddly-home-away-from-home/" target="_blank">View Rover Profile</a>
+        </br>
+      <strong>Direct booking with me through IA PETS removes middle-man platform fees.</strong> — same me, same care, better price for you.</p>
+       <
       <a class="btn-rover" href="https://www.rover.com/members/shekeyla-s-active-cuddly-home-away-from-home/" target="_blank">Rover Profile →</a>
-       <a class="btn btn-outline-white" href="https://www.rover.com/members/shekeyla-s-active-cuddly-home-away-from-home/" target="_blank">View Rover Profile</a>
     </div>
   </div>
 </section>
@@ -619,6 +564,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-service">Drop-In Visits · Feb 2026</div></div>
         <p class="review-text">"Pups were in great shape upon our return. We appreciate Shekeyla's timeliness for her visits and getting the pups outdoors during our travels."</p>
         <p class="review-author">— Jon S.</p>
+   </div>
 
      <div class="review-card">
         <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-service">Boarding · Feb 2026</div></div>
